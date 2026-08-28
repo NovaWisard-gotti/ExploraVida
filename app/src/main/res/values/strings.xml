@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ExploraVida</string>
+    <string name="app_tagline">El gran laboratorio de la vida</string>
+    <string name="cd_vita">Vita, el ser vivo del laboratorio</string>
+    <string name="cd_nora">Nora, la exploradora cientifica</string>
+    <string name="cd_lab">Laboratorio de exploracion</string>
+</resources>
