@@ -1,6 +1,6 @@
 package com.educalab.exploravida.ui.exploration
 
-import androidx.compose.animation.AnimatedVisibility as ComposeAnimatedVisibility
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -117,25 +117,14 @@ fun ExperienceScreen(
                     }
                 )
                 Spacer(Modifier.width(8.dp))
-                Box(
-                    Modifier
+                VitaStage(
+                    mood = moodFor(state.current?.systemId),
+                    highlightedSystems = state.current?.systemId?.let { setOf(it) } ?: emptySet(),
+                    finished = state.finished,
+                    modifier = Modifier
                         .weight(1f)
-                        .fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    VitaOrganism(
-                        modifier = Modifier.fillMaxSize(),
-                        mood = moodFor(state.current?.systemId),
-                        highlightedSystems = state.current?.systemId?.let { setOf(it) } ?: emptySet()
-                    )
-                    ComposeAnimatedVisibility(
-                        visible = state.finished,
-                        enter = fadeIn(tween(220)) + scaleIn(tween(220)),
-                        exit = fadeOut(tween(160))
-                    ) {
-                        CelebrationBurst(Modifier.fillMaxSize())
-                    }
-                }
+                        .fillMaxSize()
+                )
             }
 
             Spacer(Modifier.height(8.dp))
@@ -194,6 +183,29 @@ fun ExperienceScreen(
                     )
                 }
             }
+        }
+    }
+}
+
+@Composable
+private fun VitaStage(
+    mood: VitaMood,
+    highlightedSystems: Set<String>,
+    finished: Boolean,
+    modifier: Modifier = Modifier
+) {
+    Box(modifier, contentAlignment = Alignment.Center) {
+        VitaOrganism(
+            modifier = Modifier.fillMaxSize(),
+            mood = mood,
+            highlightedSystems = highlightedSystems
+        )
+        AnimatedVisibility(
+            visible = finished,
+            enter = fadeIn(tween(220)) + scaleIn(tween(220)),
+            exit = fadeOut(tween(160))
+        ) {
+            CelebrationBurst(Modifier.fillMaxSize())
         }
     }
 }
