@@ -1,6 +1,6 @@
 package com.educalab.exploravida.ui.exploration
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.AnimatedVisibility as ComposeAnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -128,7 +128,7 @@ fun ExperienceScreen(
                         mood = moodFor(state.current?.systemId),
                         highlightedSystems = state.current?.systemId?.let { setOf(it) } ?: emptySet()
                     )
-                    AnimatedVisibility(
+                    ComposeAnimatedVisibility(
                         visible = state.finished,
                         enter = fadeIn(tween(220)) + scaleIn(tween(220)),
                         exit = fadeOut(tween(160))
