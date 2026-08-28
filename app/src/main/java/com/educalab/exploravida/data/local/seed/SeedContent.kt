@@ -110,7 +110,7 @@ object SeedContent {
         LearningExperienceEntity(
             "exp_respirar", "Cuando Vita respira", "Activa la respiracion",
             "Respira conmigo. Mira por donde entra el aire.",
-            ExperienceKind.RECORRIDO.name, 2, 20,
+            ExperienceKind.RECORRIDO.name, 2, 0,
             SceneBackground.CAMARA_AIRE.name, "ic_lungs"
         ),
         LearningExperienceEntity(
@@ -282,6 +282,9 @@ object SeedContent {
         step("exp_secuencia", 1, "Coloca las tarjetas",
             "Toca una tarjeta para colocarla en el siguiente hueco.",
             null, AnimationKey.SISTEMA_ILUMINA, IllustrationKey.PROBETA),
+        step("exp_secuencia", 2, "Comprueba el resultado",
+            "Si el orden es correcto, sabras que paso ocurrio primero.",
+            null, AnimationKey.FLECHA_CONEXION, IllustrationKey.NORA),
         // --- exp_juntos
         step("exp_juntos", 0, "Vita come una fruta",
             "Primero come. El sistema digestivo empieza a trabajar.",
@@ -308,6 +311,9 @@ object SeedContent {
         step("exp_comparar", 1, "Observa la diferencia",
             "Fijate en cuanto aguanta Vita en cada prueba.",
             null, AnimationKey.CHISPA_ENERGIA, IllustrationKey.VITA_CORRIENDO),
+        step("exp_comparar", 2, "Saca una conclusion",
+            "Que cambio hizo la diferencia? Eso es lo que importa descubrir.",
+            null, AnimationKey.SISTEMA_ILUMINA, IllustrationKey.MATRAZ),
         // --- exp_limpieza
         step("exp_limpieza", 0, "No todo se aprovecha",
             "De lo que entra, una parte no le sirve al cuerpo.",
