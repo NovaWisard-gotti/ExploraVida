@@ -138,9 +138,15 @@ class ExploraVidaRepository(
 
     // -------------------------------------------------------------- progreso
 
+    /**
+     * Antes de crear el perfil no existe fila en user_profile, y progress
+     * tiene una FOREIGN KEY hacia profileId: insertar aqui haria fallar
+     * la restriccion y cerraria la app. Sin perfil, se devuelve un valor
+     * por defecto sin persistirlo.
+     */
     private suspend fun currentProgress(): ProgressEntity =
         progressDao.progress() ?: ProgressEntity(profileId = 1, updatedAt = clock()).also {
-            progressDao.upsertProgress(it)
+            if (profileDao.profile() != null) progressDao.upsertProgress(it)
         }
 
     suspend fun stats(): ProgressStats {
